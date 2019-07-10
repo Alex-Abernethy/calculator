@@ -1,0 +1,141 @@
+body {
+    background-color: powderblue;
+  }
+
+figure {
+    font-family: 'Roboto', sans-serif;
+}
+
+footer { 
+    text-align: center;
+    clear: left;
+    margin: 20px;
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    margin: 15px 5px 15px 5px;
+  }
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    margin: 10px 5px 10px 5px;
+    text-align: center;
+}
+
+h3 {
+    font-family: 'Roboto', sans-serif;
+    margin: 10px 5px 10px 5px;
+    text-align: center;
+}
+
+header { 
+    display: block;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 45px;
+    border: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+li{
+    padding: 3px;
+    font-family: 'Roboto', sans-serif;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+    text-align: center;
+  }
+
+.border {
+    margin: 10px 10px 10px 0px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+
+}
+
+.button {
+    position: relative;
+    height: 65px;
+    width: 80px;
+    color: skyblue;
+    outline: 1px solid black;
+    border: none;
+    background: #292828;
+    font-family: Share Tech Mono, monospace;
+    font-size: 25px;
+    cursor: default;
+  }
+
+.column {
+    float: left;
+  }
+  
+  /* Left column */
+  .column.left {
+    width: 20%;
+  }
+  
+  /* Middle column */
+  .column.middle {
+    width: 60%;
+  }
+
+  /* right column */
+  .column.right {
+      width: 20%
+  }
+  
+  /* Responsive layout - columns will stack vertically on small screens */
+  @media screen and (max-width: 900px) {
+    .column.left, .column.right {
+      width: 100%;
+    }
+  }
+
+.display-block {
+    padding: 2 2 2 2;
+    margin: 2 2 2 2;
+    border-style: solid;
+    border-color: red;
+    border-width: 1px;
+}
+
+.horizontal-list li {
+    display: inline-block;
+    font-size: 20px;
+    padding: 20px;
+    float: left;
+    padding-inline-start: 0px;
+}
+
+.image {
+    display: block;
+    margin: 15px;
+}
+
+.index-list {
+    font-family: 'Roboto', sans-serif;
+    margin-right: 10px;
+}
+
+.inline {
+    color: red;
+}
+
+.inline-text {
+    background: white;
+}
+
+.txt {
+    margin: 5 1 5 1;
+}

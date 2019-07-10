@@ -1,14 +1,23 @@
+//note bug in sample code. if you type ".1" it dispalys a "1."
+//also half of this is jquery
+
+
 // entries get added to an array
-// var entries = [];
+var entries = [];
 
 //variable to hold calculated total
-// var total = 0;
+var total = 0;
 
+// setup a temp variable to store the calculation
 var temp = '';
+
+//event listener for click on any button run a function
 $("button").on('click', function() {
+  //set variable val (value) to val.text()
  	var val = $(this).text();
 
-  // Got a number, add to temp
+  //giant if else statement for all the key inputs 0-9, +, -< etc
+   // Got a number, add to temp
   if (!isNaN(val) || val === '.') {
     temp += val;
     $("#answer").val(temp.substring(0,10));
@@ -63,7 +72,8 @@ $("button").on('click', function() {
     $("#answer").val(nt);
 		entries = [];
     temp = '';
-    
+  
+  //final else in giant if statement. Push number to temp
   // Push number
   } else {
     entries.push(temp);
