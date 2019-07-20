@@ -139,3 +139,17 @@ table, th, td {
 .txt {
     margin: 5 1 5 1;
 }
+
+#answer {
+    position: relative;
+    width: 360px;
+    height: 65px;
+    color: skyblue;
+    outline: 1px solid black;
+    border: none;
+    background: #292828;
+    font-family: Share Tech Mono, monospace;
+    font-size: 25px;
+    cursor: default;
+    text-align: right;
+}
