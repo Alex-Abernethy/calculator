@@ -1,11 +1,4 @@
-// multiplying 0.3 * 0.3 = 0.899999999 prob JS limitation
-
-//not displaying numbers as entered only when '=' pressed.
-
-//order of operations not folllowed
-// when 3+3*6= is entered
-// calculates (3+3)*6 = 54
-// should calc 3+(3*6) = 21
+// replace eval with code that respects order of operations and rounding small numbers
 
 // entries get added to an array
 var entries = [];
