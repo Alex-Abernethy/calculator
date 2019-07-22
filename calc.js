@@ -16,11 +16,8 @@ var total = 0;
 // setup a temp variable to store the calculation
 var temp = '';
 
-// document.getElementById("calculator").addEventListener("click", myFunction);
-
-// function myFunction() {
-//   alert("Hello World");
-// }
+//for displaying current entries
+var tempAnswer = [];
 
 // //event listener for click on any button run a function
 // Get the parent DIV ("calculator"), add click listener...
@@ -33,30 +30,40 @@ document.getElementById("calculator").addEventListener("click", function(e){
 
     //setup a button value variable
     var buttonValue = e.target.innerHTML
-
+    
 // each of these needs to set display to current value
 
     if (!isNaN(buttonValue) || buttonValue === '.') {
       temp += buttonValue;
+      tempAnswer.push(buttonValue);
+      document.getElementById('answer').value = tempAnswer.join('')
 
     } else if (buttonValue === 'CE') {
       temp = '';
+      tempAnswer.pop();
+      document.getElementById('answer').value = tempAnswer.join('')
 
     } else if (buttonValue === 'AC') {
       entries = [];
       temp = '';
       total = 0;
+      tempAnswer = [];
+      document.getElementById('answer').value = '0'
 
     } else if (buttonValue === 'x') {
       entries.push(temp);
       entries.push('*');
       temp = '';
+      tempAnswer.push('x')
+      document.getElementById('answer').value = tempAnswer.join('')
             
     // Change divide symbol to work with eval
     } else if (buttonValue === '÷') {
       entries.push(temp);
       entries.push('/');
       temp = '';
+      tempAnswer.push('÷')
+      document.getElementById('answer').value = tempAnswer.join('')
 
     // Got the equals sign, perform calculation
     } else if (buttonValue === '=') {
@@ -82,20 +89,19 @@ document.getElementById("calculator").addEventListener("click", function(e){
       if (nt < 0) {
         nt = '-' + Math.abs(nt);
       }
-      
-    // need the js version of this 
-    // $("#answer").val(nt);
-    console.log(nt)
   
     document.getElementById('answer').value = nt
     entries = [];
     temp = '';
+    tempAnswer = [];
 
    // Push number
   } else {
     entries.push(temp);
     entries.push(buttonValue);
     temp = '';
+    tempAnswer.push(temp);
+    document.getElementById('answer').value = tempAnswer.join('')
   }
 
   }
