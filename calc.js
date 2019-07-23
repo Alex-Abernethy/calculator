@@ -13,12 +13,12 @@ var temp = '';
 var tempAnswer = [];
 
 // //event listener for click on any button run a function
-// Get the parent DIV ("calculator"), add click listener...
-document.getElementById("calculator").addEventListener("click", function(e){
+// Get the parent DIV ('calculator'), add click listener...
+document.getElementById('calculator').addEventListener('click', function(e){
   
   // e.target was the clicked element
-  if (e.target && e.target.matches("button.button")) {
-    console.log("Button element clicked!");
+  if (e.target && e.target.matches('button.button')) {
+    console.log('Button element clicked!');
     console.log(e.target.innerHTML);
 
     //setup a button value variable
@@ -41,29 +41,44 @@ document.getElementById("calculator").addEventListener("click", function(e){
       temp = '';
       total = 0;
       tempAnswer = [];
-      document.getElementById('answer').value = '0'
+      document.getElementById('answer').value = '0';
 
     } else if (buttonValue === 'x') {
       entries.push(temp);
       entries.push('*');
       temp = '';
-      tempAnswer.push('x')
-      document.getElementById('answer').value = tempAnswer.join('')
-            
+      tempAnswer.push('x');
+      document.getElementById('answer').value = tempAnswer.join('');
+    
+    } else if (buttonValue === '-') {
+      entries.push(temp);
+      entries.push('-');
+      temp = '';
+      tempAnswer.push('-');
+      document.getElementById('answer').value = tempAnswer.join('');
+    
+    } else if (buttonValue === '+') {
+      entries.push(temp);
+      entries.push('+');
+      temp = '';
+      tempAnswer.push('+');
+      document.getElementById('answer').value = tempAnswer.join('');
+    
+      
     // Change divide symbol to work with eval
     } else if (buttonValue === '÷') {
       entries.push(temp);
       entries.push('/');
       temp = '';
-      tempAnswer.push('÷')
-      document.getElementById('answer').value = tempAnswer.join('')
+      tempAnswer.push('÷');
+      document.getElementById('answer').value = tempAnswer.join('');
 
     // Got the equals sign, perform calculation
     } else if (buttonValue === '=') {
       entries.push(temp);
       
-      var entriesString = entries.join(" ")
-      var nt = eval(entriesString)
+      var entriesString = entries.join(' ');
+      var nt = eval(entriesString);
       // var nt = Number(entries[0]);
       
       // for (let i = 1; i < entries.length; i++) {
@@ -94,7 +109,7 @@ document.getElementById("calculator").addEventListener("click", function(e){
     entries.push(buttonValue);
     temp = '';
     tempAnswer.push(temp);
-    document.getElementById('answer').value = tempAnswer.join('')
+    document.getElementById('answer').value = tempAnswer.join('');
   }
 
   }
