@@ -1,5 +1,3 @@
-// replace eval with code that respects order of operations and rounding small numbers
-
 // entries get added to an array
 var entries = [];
 
@@ -23,8 +21,6 @@ document.getElementById('calculator').addEventListener('click', function(e){
 
     //setup a button value variable
     var buttonValue = e.target.innerHTML
-    
-// each of these needs to set display to current value
 
     if (!isNaN(buttonValue) || buttonValue === '.') {
       temp += buttonValue;
@@ -64,8 +60,7 @@ document.getElementById('calculator').addEventListener('click', function(e){
       tempAnswer.push('+');
       document.getElementById('answer').value = tempAnswer.join('');
     
-      
-    // Change divide symbol to work with eval
+    // ensure divide symbol to works with eval
     } else if (buttonValue === '÷') {
       entries.push(temp);
       entries.push('/');
@@ -73,27 +68,14 @@ document.getElementById('calculator').addEventListener('click', function(e){
       tempAnswer.push('÷');
       document.getElementById('answer').value = tempAnswer.join('');
 
-    // Got the equals sign, perform calculation
+    // if equals perform calculation
     } else if (buttonValue === '=') {
       entries.push(temp);
       
       var entriesString = entries.join(' ');
       var nt = eval(entriesString);
-      // var nt = Number(entries[0]);
       
-      // for (let i = 1; i < entries.length; i++) {
-      //   var nextNum = Number(entries[i+1])
-      //   var symbol = entries[i];
-        
-      //   if (symbol === '+') { nt += nextNum; } 
-      //   else if (symbol === '-') { nt -= nextNum; } 
-      //   else if (symbol === '*') { nt *= nextNum; } 
-      //   else if (symbol === '/') { nt /= nextNum; }
-        
-      //   i++;
-      // }
-
-      //  Swap the '-' symbol so text input handles it correctly
+      //  if negative number place '-' in front of number
       if (nt < 0) {
         nt = '-' + Math.abs(nt);
       }
