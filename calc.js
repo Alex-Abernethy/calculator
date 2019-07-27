@@ -1,5 +1,3 @@
-// replace eval with code that respects order of operations and rounding small numbers
-
 // entries get added to an array
 var entries = [];
 
@@ -13,15 +11,15 @@ var temp = '';
 var tempAnswer = []; 
 
 function onNumber(buttonValue) {
-        temp += buttonValue;
-        tempAnswer.push(buttonValue);
-        document.getElementById('answer').value = tempAnswer.join('')
+  temp += buttonValue;
+  tempAnswer.push(buttonValue);
+  document.getElementById('answer').value = tempAnswer.join('')
 }
 
 function onClear() {
-   temp = '';
-   tempAnswer.pop();
-   document.getElementById('answer').value = tempAnswer.join('')
+  temp = '';
+  tempAnswer.pop();
+  document.getElementById('answer').value = tempAnswer.join('')
 }
 
 function onAllClear() {
@@ -30,6 +28,40 @@ function onAllClear() {
   total = 0;
   tempAnswer = [];
   document.getElementById('answer').value = '0'
+}
+
+function onMinus() {
+  entries.push(temp);
+  entries.push('-');
+  temp = '';
+  tempAnswer.push('-');
+  document.getElementById('answer').value = tempAnswer.join('');
+}
+
+function onPlus() {
+  entries.push(temp);
+  entries.push('+');
+  temp = '';
+  tempAnswer.push('+');
+  document.getElementById('answer').value = tempAnswer.join('');
+}
+
+// changes symbol to work with multiplication later
+function onTimes () {
+  entries.push(temp);
+      entries.push('*');
+      temp = '';
+      tempAnswer.push('x')
+      document.getElementById('answer').value = tempAnswer.join('')
+}
+
+// changes symbol to work with running the division later
+function onDivide () {
+  entries.push(temp);
+  entries.push('/');
+  temp = '';
+  tempAnswer.push('÷')
+  document.getElementById('answer').value = tempAnswer.join('')
 }
 
 // evaluates any instances of multiplication and division
@@ -52,7 +84,6 @@ function evalMultiplyAndDivide(symbol) {
 }
 
 //event listener for click on any button run a function
-// Get the parent DIV ("calculator"), add click listener...
 document.getElementById("calculator").addEventListener("click", function(e){
   
   // e.target was the clicked element
@@ -60,8 +91,6 @@ document.getElementById("calculator").addEventListener("click", function(e){
 
     //setup a button value variable
     var buttonValue = e.target.innerHTML
-    
-// each of these needs to set display to current value
 
     // switch (buttonValue) {
     //   case '.':
@@ -81,50 +110,28 @@ document.getElementById("calculator").addEventListener("click", function(e){
     // }
 
     if (!isNaN(buttonValue) || buttonValue === '.') {
+      // onNumber()
       temp += buttonValue;
       tempAnswer.push(buttonValue);
       document.getElementById('answer').value = tempAnswer.join('')
 
     } else if (buttonValue === 'CE') {
-      temp = '';
-      tempAnswer.pop();
-      document.getElementById('answer').value = tempAnswer.join('')
+      onClear()
 
     } else if (buttonValue === 'AC') {
-      entries = [];
-      temp = '';
-      total = 0;
-      tempAnswer = [];
-      document.getElementById('answer').value = '0'
+      onAllClear()
 
     }  else if (buttonValue === '-') {
-      entries.push(temp);
-      entries.push('-');
-      temp = '';
-      tempAnswer.push('-');
-      document.getElementById('answer').value = tempAnswer.join('');
+      onMinus()
     
     } else if (buttonValue === '+') {
-      entries.push(temp);
-      entries.push('+');
-      temp = '';
-      tempAnswer.push('+');
-      document.getElementById('answer').value = tempAnswer.join('');
+      onPlus()
     
     }else if (buttonValue === 'x') {
-      entries.push(temp);
-      entries.push('*');
-      temp = '';
-      tempAnswer.push('x')
-      document.getElementById('answer').value = tempAnswer.join('')
-            
-    // Change divide symbol to work with eval
+      onTimes()
+
     } else if (buttonValue === '÷') {
-      entries.push(temp);
-      entries.push('/');
-      temp = '';
-      tempAnswer.push('÷')
-      document.getElementById('answer').value = tempAnswer.join('')
+      onDivide()
 
     // Got the equals sign, perform calculation
     } else if (buttonValue === '=') {
@@ -141,8 +148,8 @@ document.getElementById("calculator").addEventListener("click", function(e){
         var nextNum = Number(entries[i+1])
         var symbol = entries[i];
         
-        if (symbol === '+') { nt += nextNum; } 
-        else if (symbol === '-') { nt -= nextNum; } 
+        if (symbol === '+') { nt += nextNum; }
+        else if (symbol === '-') { nt -= nextNum; }
         
         i++;
       }
