@@ -8,7 +8,7 @@ var total = 0;
 var temp = '';
 
 //for displaying current entries
-var tempAnswer = []; 
+var tempAnswer = [];
 
 function onNumber(buttonValue) {
   temp += buttonValue;
@@ -47,21 +47,53 @@ function onPlus() {
 }
 
 // changes symbol to work with multiplication later
-function onTimes () {
+function onTimes() {
   entries.push(temp);
-      entries.push('*');
-      temp = '';
-      tempAnswer.push('x')
-      document.getElementById('answer').value = tempAnswer.join('')
+  entries.push('*');
+  temp = '';
+  tempAnswer.push('x')
+  document.getElementById('answer').value = tempAnswer.join('')
 }
 
 // changes symbol to work with running the division later
-function onDivide () {
+function onDivide() {
   entries.push(temp);
   entries.push('/');
   temp = '';
   tempAnswer.push('÷')
   document.getElementById('answer').value = tempAnswer.join('')
+}
+
+// runs the calculation
+function onEquals() {
+  entries.push(temp);
+
+  // loops through array and does multiplication and division
+  for (let i = 0; i < entries.length; i++) {
+    evalMultiplyAndDivide(entries[i])
+  }
+
+  var nt = Number(entries[0]);
+
+  for (let i = 1; i < entries.length; i++) {
+    var nextNum = Number(entries[i + 1])
+    var symbol = entries[i];
+
+    if (symbol === '+') { nt += nextNum; }
+    else if (symbol === '-') { nt -= nextNum; }
+
+    i++;
+  }
+
+  //  Swap the '-' symbol so text input handles it correctly
+  if (nt < 0) {
+    nt = '-' + Math.abs(nt);
+  }
+
+  document.getElementById('answer').value = nt
+  entries = [];
+  temp = '';
+  tempAnswer = [];
 }
 
 // evaluates any instances of multiplication and division
@@ -84,36 +116,16 @@ function evalMultiplyAndDivide(symbol) {
 }
 
 //event listener for click on any button run a function
-document.getElementById("calculator").addEventListener("click", function(e){
-  
+document.getElementById("calculator").addEventListener("click", function (e) {
+
   // e.target was the clicked element
   if (e.target && e.target.matches("button.button")) {
 
     //setup a button value variable
     var buttonValue = e.target.innerHTML
 
-    // switch (buttonValue) {
-    //   case '.':
-    //       onNumber(buttonValue);
-    //       break;
-    //   case 'CE':
-    //       onClear();
-    //       break;
-    //   case 'AC':
-    //       onAllClear();
-    //       break;
-    //   default:
-    //     if (!isNaN(buttonValue)) {
-    //       onNumber(buttonValue);
-    //     }
-    //     break;
-    // }
-
     if (!isNaN(buttonValue) || buttonValue === '.') {
-      // onNumber()
-      temp += buttonValue;
-      tempAnswer.push(buttonValue);
-      document.getElementById('answer').value = tempAnswer.join('')
+      onNumber(buttonValue)
 
     } else if (buttonValue === 'CE') {
       onClear()
@@ -121,56 +133,21 @@ document.getElementById("calculator").addEventListener("click", function(e){
     } else if (buttonValue === 'AC') {
       onAllClear()
 
-    }  else if (buttonValue === '-') {
+    } else if (buttonValue === '-') {
       onMinus()
-    
+
     } else if (buttonValue === '+') {
       onPlus()
-    
-    }else if (buttonValue === 'x') {
+
+    } else if (buttonValue === 'x') {
       onTimes()
 
     } else if (buttonValue === '÷') {
       onDivide()
 
-    // Got the equals sign, perform calculation
     } else if (buttonValue === '=') {
-      entries.push(temp);
-
-      // loops through array and does multiplication and division
-      for (let i = 0; i < entries.length; i++) {
-        evalMultiplyAndDivide(entries[i])
-      }
-
-      var nt = Number(entries[0]);
-      
-      for (let i = 1; i < entries.length; i++) {
-        var nextNum = Number(entries[i+1])
-        var symbol = entries[i];
-        
-        if (symbol === '+') { nt += nextNum; }
-        else if (symbol === '-') { nt -= nextNum; }
-        
-        i++;
-      }
-
-      //  Swap the '-' symbol so text input handles it correctly
-      if (nt < 0) {
-        nt = '-' + Math.abs(nt);
-      }
-  
-      document.getElementById('answer').value = nt
-      entries = [];
-      temp = '';
-      tempAnswer = [];
-
-   // Push number
-  } else {
-    entries.push(temp);
-    entries.push(buttonValue);
-    temp = '';
-    document.getElementById('answer').value = tempAnswer.join('')
-  }
+      onEquals()
+    }
 
   }
 });
