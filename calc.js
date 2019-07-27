@@ -71,24 +71,34 @@ document.getElementById('calculator').addEventListener('click', function(e){
     // if equals perform calculation
     } else if (buttonValue === '=') {
       entries.push(temp);
+      console.log(entries);
+
+      // var entriesString = entries.join(' ');
+      // var nt = eval(entriesString);
       
+      for (let i = 0; i < entries.length; i++) {
+        if (entries[i] === '*') {
+          let position = entries.indexOf(entries[i]);
+          console.log(position);
+          let leftPosition = position - 1;
+          let rightPosition = position + 1;
+          product = entries[leftPosition] * entries[rightPosition];
+          entries.splice(leftPosition, 3, product);
+          console.log(product);
+        } else if (entries[i] === '/') {
+          let position = entries.indexOf(entries[i]);
+          let leftPosition = position - 1;
+          let rightPosition = position + 1;
+          product = entries[leftPosition] / entries[rightPosition];
+          entries.splice(leftPosition, 3, product);
+          console.log(product)
+        } else {
+          console.log("number")
+        } 
+      }
+      console.log(entries)
       var entriesString = entries.join(' ');
       var nt = eval(entriesString);
-      
-      // alternative maths method avoiding eval
-      // Take string
-      // 1+2*3+5*6+2
-      // Split at symbol
-      // 1+2 * 3+5*6+2
-      // Find number either side of symbol
-      // ’1’ ‘2*3’  +5*6+2’
-      // Make symbol plus found numbers a newString
-      // remainder leftString and rightString
-      // Eval newString ‘2*3’ =6
-      // Concat leftString newString rightString
-      // 1+6+5*6+2
-      // Repeat
-      // Once no more multiply or division symbols then eval what’s left
 
       //  if negative number place '-' in front of number
       if (nt < 0) {
