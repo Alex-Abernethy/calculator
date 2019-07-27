@@ -32,6 +32,7 @@ function onAllClear() {
   document.getElementById('answer').value = '0'
 }
 
+// 
 function evalMultiplyAndDivide(symbol) {
   if (symbol !== '*' && symbol !== '/') {
     return
@@ -52,7 +53,7 @@ function evalMultiplyAndDivide(symbol) {
   console.log(product);
 }
 
-// //event listener for click on any button run a function
+//event listener for click on any button run a function
 // Get the parent DIV ("calculator"), add click listener...
 document.getElementById("calculator").addEventListener("click", function(e){
   
@@ -133,56 +134,32 @@ document.getElementById("calculator").addEventListener("click", function(e){
     } else if (buttonValue === '=') {
       entries.push(temp);
 
+      // loops through array and does multiplication and division
       for (let i = 0; i < entries.length; i++) {
-        
         evalMultiplyAndDivide(entries[i])
-
-
-        // if (entries[i] === '*') {
-        //   let position = entries.indexOf(entries[i]);
-        //   console.log(position);
-        //   let leftPosition = position - 1;
-        //   let rightPosition = position + 1;
-        //   product = entries[leftPosition] * entries[rightPosition];
-        //   entries.splice(leftPosition, 3, product);
-        //   console.log(product);
-        // } else if (entries[i] === '/') {
-        //   let position = entries.indexOf(entries[i]);
-        //   let leftPosition = position - 1;
-        //   let rightPosition = position + 1;
-        //   product = entries[leftPosition] / entries[rightPosition];
-        //   entries.splice(leftPosition, 3, product);
-        //   console.log(product)
-        // } else {
-        //   console.log("number")
-        // }
       }
 
-      var entriesString = entries.join(" ")
-      var nt = eval(entriesString)
-      // var nt = Number(entries[0]);
+      var nt = Number(entries[0]);
       
-      // for (let i = 1; i < entries.length; i++) {
-      //   var nextNum = Number(entries[i+1])
-      //   var symbol = entries[i];
+      for (let i = 1; i < entries.length; i++) {
+        var nextNum = Number(entries[i+1])
+        var symbol = entries[i];
         
-      //   if (symbol === '+') { nt += nextNum; } 
-      //   else if (symbol === '-') { nt -= nextNum; } 
-      //   else if (symbol === '*') { nt *= nextNum; } 
-      //   else if (symbol === '/') { nt /= nextNum; }
+        if (symbol === '+') { nt += nextNum; } 
+        else if (symbol === '-') { nt -= nextNum; } 
         
-      //   i++;
-      // }
+        i++;
+      }
 
       //  Swap the '-' symbol so text input handles it correctly
       if (nt < 0) {
         nt = '-' + Math.abs(nt);
       }
   
-    document.getElementById('answer').value = nt
-    entries = [];
-    temp = '';
-    tempAnswer = [];
+      document.getElementById('answer').value = nt
+      entries = [];
+      temp = '';
+      tempAnswer = [];
 
    // Push number
   } else {
