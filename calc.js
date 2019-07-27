@@ -32,14 +32,13 @@ function onAllClear() {
   document.getElementById('answer').value = '0'
 }
 
-// 
+// evaluates any instances of multiplication and division
 function evalMultiplyAndDivide(symbol) {
   if (symbol !== '*' && symbol !== '/') {
     return
   }
 
   let position = entries.indexOf(symbol);
-  console.log(position);
   let leftPosition = position - 1;
   let rightPosition = position + 1;
 
@@ -50,7 +49,6 @@ function evalMultiplyAndDivide(symbol) {
   }
 
   entries.splice(leftPosition, 3, product);
-  console.log(product);
 }
 
 //event listener for click on any button run a function
@@ -59,8 +57,6 @@ document.getElementById("calculator").addEventListener("click", function(e){
   
   // e.target was the clicked element
   if (e.target && e.target.matches("button.button")) {
-    console.log("Button element clicked!");
-    console.log(e.target.innerHTML);
 
     //setup a button value variable
     var buttonValue = e.target.innerHTML
