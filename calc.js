@@ -72,7 +72,7 @@ function onEquals() {
   for (let i = 0; i < entries.length; i++) {
     evalMultiplyAndDivide(entries[i])
   }
-
+ console.log(entries)
   var nt = Number(entries[0]);
 
   for (let i = 1; i < entries.length; i++) {
@@ -101,16 +101,20 @@ function evalMultiplyAndDivide(symbol) {
   if (symbol !== '*' && symbol !== '/') {
     return
   }
+  console.log(symbol)
 
   let position = entries.indexOf(symbol);
   let leftPosition = position - 1;
   let rightPosition = position + 1;
 
-  if (symbol = '*') {
-    product = entries[leftPosition] * entries[rightPosition];
-  } else if (symbol = '/') {
+  console.log(position)
+
+  if (symbol == '/') {
     product = entries[leftPosition] / entries[rightPosition];
+  } else if (symbol == '*') {
+    product = entries[leftPosition] * entries[rightPosition];
   }
+  console.log(product)
 
   entries.splice(leftPosition, 3, product);
 }
