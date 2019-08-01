@@ -72,7 +72,7 @@ function onEquals() {
   for (let i = 0; i < entries.length; i++) {
     evalMultiplyAndDivide(entries[i])
   }
-  
+
   var nt = Number(entries[0]);
 
   for (let i = 1; i < entries.length; i++) {
@@ -124,30 +124,58 @@ document.getElementById("calculator").addEventListener("click", function (e) {
     //setup a button value variable
     var buttonValue = e.target.innerHTML
 
-    if (!isNaN(buttonValue) || buttonValue === '.') {
-      onNumber(buttonValue)
-
-    } else if (buttonValue === 'CE') {
-      onClear()
-
-    } else if (buttonValue === 'AC') {
-      onAllClear()
-
-    } else if (buttonValue === '-') {
-      onMinus()
-
-    } else if (buttonValue === '+') {
-      onPlus()
-
-    } else if (buttonValue === 'x') {
-      onTimes()
-
-    } else if (buttonValue === '÷') {
-      onDivide()
-
-    } else if (buttonValue === '=') {
-      onEquals()
+    switch (buttonValue) {
+      case "CE":
+        onClear();
+        break;
+      case "AC":
+        onAllClear();
+        break;
+      case "-":
+        onMinus();
+        break;
+      case "+":
+        onPlus();
+        break;
+      case "x":
+        onTimes();
+        break;
+      case "÷":
+        onDivide();
+        break;
+      case "=":
+        onEquals();
+        break;
+      default:
+        onNumber(buttonValue)
+        break;
     }
+
+    // if (!isNaN(buttonValue) || buttonValue === '.') {
+    //   onNumber(buttonValue)
+
+    // } else if (buttonValue === 'CE') {
+    //   onClear()
+
+    // } else if (buttonValue === 'AC') {
+    //   onAllClear()
+
+    // } else if (buttonValue === '-') {
+    //   onMinus()
+
+    // } else if (buttonValue === '+') {
+    //   onPlus()
+
+    // } else if (buttonValue === 'x') {
+    //   onTimes()
+
+    // } else if (buttonValue === '÷') {
+    //   onDivide()
+
+    // } else if (buttonValue === '=') {
+    //   onEquals()
+    // }
 
   }
 });
+
